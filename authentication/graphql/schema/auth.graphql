@@ -1,0 +1,4 @@
+type Auth {
+  id: ID!
+  user: User!
+}

@@ -11,12 +11,15 @@ const defaultPort string = ":2021"
 
 var server *gin.Engine
 
+func init() {
+	server = gin.Default()
+
+	// register routes
+	auth.RegisterAuth(GetInstance())
+}
+
 // GetInstance returns the server instance
 func GetInstance() *gin.RouterGroup {
-	if server == nil {
-		server = gin.Default()
-	}
-
 	return &server.RouterGroup
 }
 
@@ -25,8 +28,6 @@ func StartServer() {
 	if server == nil {
 		GetInstance()
 	}
-
-	auth.RegisterAuth(GetInstance())
 
 	log.Println("starting server on http://localhost" + defaultPort)
 	server.Run(defaultPort)
