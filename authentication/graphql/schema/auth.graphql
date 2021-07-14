@@ -1,4 +1,16 @@
 type Auth {
-  id: ID!
   user: User!
 }
+
+extend type User {
+  etag: String!
+}
+
+
+type Mine {
+  users: Auth
+  link: [String!]!
+}
+
+scalar Scaling
+scalar Jute

@@ -3,7 +3,8 @@ package app
 import (
 	"log"
 
-	"github.com/0xedb/everything_go/authentication/auth"
+	"github.com/0xedb/everything_go/authentication/route"
+	"github.com/0xedb/everything_go/authentication/route/auth"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,8 +15,17 @@ var server *gin.Engine
 func init() {
 	server = gin.Default()
 
-	// register routes
-	auth.RegisterAuth(GetInstance())
+	endpoints := []route.Path{auth.Instance}
+
+	registerRoutes(endpoints)
+}
+
+func registerRoutes(routes []route.Path) {
+	instance := GetInstance()
+
+	for _, route := range routes {
+		route.Register(instance)
+	}
 }
 
 // GetInstance returns the server instance

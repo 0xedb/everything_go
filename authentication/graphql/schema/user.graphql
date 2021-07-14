@@ -1,5 +1,15 @@
 type User {
   name: String!
-  id: ID!
-  age(name: String): Int
+  id: ID! 
+}
+
+type Nothing {
+  more: String!
+}
+
+
+
+ type Query {
+  d(name: String!): User
+  position(id: String!):Int
 }

@@ -3,12 +3,20 @@
 package model
 
 type Auth struct {
-	ID   string `json:"id"`
-	User *User  `json:"user"`
+	User *User `json:"user"`
+}
+
+type Mine struct {
+	Users *Auth    `json:"users"`
+	Link  []string `json:"link"`
+}
+
+type Nothing struct {
+	More string `json:"more"`
 }
 
 type User struct {
 	Name string `json:"name"`
 	ID   string `json:"id"`
-	Age  *int   `json:"age"`
+	Etag string `json:"etag"`
 }
